@@ -5,6 +5,11 @@
  */
 package edu.test.testmedev;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author User
@@ -24,8 +29,13 @@ public class TestMedev {
 
     }
     
-    public static void readPGM(String Path){
-        
+    public static void readPGM(String path){
+        try {
+            FileInputStream f = new FileInputStream(path);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
 }
