@@ -1,3 +1,4 @@
 /TestMedev/target/
 *.class
 TestMedev/target/classes/edu/test/testmedev/TestMedev.class
+*.class
