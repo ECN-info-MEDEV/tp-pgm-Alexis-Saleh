@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,12 +25,12 @@ public class TestMedev {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
        
         
         try {
-            readPGM("ressources/brain.pgm");
+        readPGM("ressources/brain.pgm");
         FileOutputStream outRaw= new FileOutputStream("ressources/test.txt");
         FileInputStream inRaw = new FileInputStream("ressources/brain.pgm");
         DataInputStream dis = new DataInputStream(inRaw);
@@ -43,48 +44,51 @@ public class TestMedev {
 
     }
     
-    public static void readPGM(String path){
-        System.out.println("lancement de readPGM");
+    public static void readPGM(String path) throws FileNotFoundException, IOException{
+        System.out.println("lancement de readPGM avec le chemin " +path);
+        byte[] arrayOfBytes;
         try {
             HashMap hash=new HashMap<Integer,Integer>();
             FileInputStream f = new FileInputStream(path);
             boolean wasComment = false;
             int lineNumber=1;
         byte b;
-            System.out.println("P2");
-            System.out.println("#");
-        while ((b = (byte) f.read()) != -1) {
-             if (b == '\n') {
-                //System.out.println("");
-                wasComment = false;
-                continue;
-            }
-             else{
-                 
-                  //System.out.print(b+" ");
-                  lineNumber=lineNumber+1;
-                  if(lineNumber>3){
-                      if(hash.containsKey((int) b)){
-                          hash.put((int)b, (int)hash.get((int)b) + 1);
+        arrayOfBytes=f.readAllBytes();
+
+            
+       
+            
+            
+        
+
+            String asciiByteArray=new String(arrayOfBytes, "UTF-8");
+            System.out.println(asciiByteArray);
+            
+            StringTokenizer st = new StringTokenizer(asciiByteArray, " ");
+            while (st.hasMoreTokens()) {
+                String currenToken=st.nextToken();
+                //System.out.println(currenToken);
+
+                if(hash.containsKey(currenToken)){
+                          hash.put(currenToken, (int)hash.get((currenToken)) + 1);
                       }
                       else{
-                           hash.put((int)b,  1);
+                           hash.put(currenToken,  1);
 
                       }
-                  }
-
-             }
-            
-            
+                
+                
+                
         }
-           
-            System.out.println(hash);
+
+            System.out.println("the instrogram is the following : " +hash);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
             Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-    
 }
+        
+    
+    
+
