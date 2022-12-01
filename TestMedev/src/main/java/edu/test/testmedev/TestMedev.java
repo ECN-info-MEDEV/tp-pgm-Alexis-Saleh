@@ -54,7 +54,7 @@ public class TestMedev {
             System.out.println("#");
         while ((b = (byte) f.read()) != -1) {
              if (b == '\n') {
-                System.out.println("");
+                //System.out.println("");
                 wasComment = false;
                 continue;
             }
