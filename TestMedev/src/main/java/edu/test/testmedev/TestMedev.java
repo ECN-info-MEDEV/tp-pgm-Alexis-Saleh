@@ -5,9 +5,13 @@
  */
 package edu.test.testmedev;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +27,17 @@ public class TestMedev {
     public static void main(String[] args) {
         // TODO code application logic here
        
-        readPGM("ressources/brain.pgm");
+        
+        try {
+            readPGM("ressources/brain.pgm");
+        FileOutputStream outRaw= new FileOutputStream("ressources/test.txt");
+        FileInputStream inRaw = new FileInputStream("ressources/brain.pgm");
+        DataInputStream dis = new DataInputStream(inRaw);
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
         
 
 
@@ -31,8 +45,10 @@ public class TestMedev {
     
     public static void readPGM(String path){
         try {
+            HashMap hash=new HashMap<Integer,Integer>();
             FileInputStream f = new FileInputStream(path);
             boolean wasComment = false;
+            int lineNumber=1;
         byte b;
             System.out.println("P2");
             System.out.println("#");
@@ -43,27 +59,25 @@ public class TestMedev {
                 continue;
             }
              else{
-                  System.out.print(b+" ");
+                 
+                  //System.out.print(b+" ");
+                  lineNumber=lineNumber+1;
+                  if(lineNumber>3){
+                      if(hash.containsKey((int) b)){
+                          hash.put((int)b, (int)hash.get((int)b) + 1);
+                      }
+                      else{
+                           hash.put((int)b,  1);
+
+                      }
+                  }
 
              }
             
             
         }
            
-//            if (b == '#') {
-//                System.out.println("#");
-//                wasComment = true;
-//                continue;
-//            }
-//            if (wasComment) {
-//                continue;
-//            }
-//            if (Character.isWhitespace(b)) {
-//                System.out.print("<Whitespace>");
-//                continue;
-//            }
-//            System.out.print(b + " ");
-//        }
+            System.out.println(hash);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
