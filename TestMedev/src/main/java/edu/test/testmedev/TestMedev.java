@@ -36,6 +36,8 @@ public class TestMedev {
             FileInputStream f = new FileInputStream(path);
             boolean wasComment = false;
         byte b;
+            System.out.println("P2");
+            System.out.println("#");
         while ((b = (byte) f.read()) != -1) {
              if (b == '\n') {
                 System.out.println("");
