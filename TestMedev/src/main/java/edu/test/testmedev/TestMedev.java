@@ -32,10 +32,32 @@ public class TestMedev {
     public static void readPGM(String path){
         try {
             FileInputStream f = new FileInputStream(path);
+            boolean wasComment = false;
+        byte b;
+        while ((b = (byte) f.read()) != -1) {
+            if (b == '\n') {
+                System.out.println("<newLine>");
+                wasComment = false;
+                continue;
+            }
+            if (b == '#') {
+                System.out.println("#");
+                wasComment = true;
+                continue;
+            }
+            if (wasComment) {
+                continue;
+            }
+            if (Character.isWhitespace(b)) {
+                System.out.print("<Whitespace>");
+                continue;
+            }
+            System.out.print(b + " ");
+        }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
     
 }
