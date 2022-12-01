@@ -44,6 +44,7 @@ public class TestMedev {
     }
     
     public static void readPGM(String path){
+        System.out.println("lancement de readPGM");
         try {
             HashMap hash=new HashMap<Integer,Integer>();
             FileInputStream f = new FileInputStream(path);
