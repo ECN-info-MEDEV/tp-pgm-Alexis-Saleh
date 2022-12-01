@@ -7,6 +7,7 @@ package edu.test.testmedev;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +25,7 @@ public class TestMedev {
         System.out.println("Hello World");
         System.out.println("Hello again !!");
         System.out.println("Hello again  again !!");
+        readPGM("");
         
 
 
@@ -55,6 +57,8 @@ public class TestMedev {
             System.out.print(b + " ");
         }
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
         }
         
