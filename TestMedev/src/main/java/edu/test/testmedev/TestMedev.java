@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,11 +81,20 @@ public class TestMedev {
                 
                 
         }
+            TreeMap<String, Integer> sorted = new TreeMap<>();
+ 
+        // Copy all data from hashMap into TreeMap
+            sorted.putAll(hash);
+ 
 
-            System.out.println("the instrogram is the following : " +hash);
+            System.out.println("the instrogram is the following : " +sorted);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    
+    public static void write(String path){
         
     }
 }
