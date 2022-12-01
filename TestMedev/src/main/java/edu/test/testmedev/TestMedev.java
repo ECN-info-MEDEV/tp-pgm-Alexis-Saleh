@@ -25,7 +25,7 @@ public class TestMedev {
         System.out.println("Hello World");
         System.out.println("Hello again !!");
         System.out.println("Hello again  again !!");
-        readPGM("");
+        readPGM("ressources/brain.pgm");
         
 
 
@@ -37,25 +37,33 @@ public class TestMedev {
             boolean wasComment = false;
         byte b;
         while ((b = (byte) f.read()) != -1) {
-            if (b == '\n') {
-                System.out.println("<newLine>");
+             if (b == '\n') {
+                System.out.println("");
                 wasComment = false;
                 continue;
             }
-            if (b == '#') {
-                System.out.println("#");
-                wasComment = true;
-                continue;
-            }
-            if (wasComment) {
-                continue;
-            }
-            if (Character.isWhitespace(b)) {
-                System.out.print("<Whitespace>");
-                continue;
-            }
-            System.out.print(b + " ");
+             else{
+                  System.out.print(b);
+
+             }
+            
+            
         }
+           
+//            if (b == '#') {
+//                System.out.println("#");
+//                wasComment = true;
+//                continue;
+//            }
+//            if (wasComment) {
+//                continue;
+//            }
+//            if (Character.isWhitespace(b)) {
+//                System.out.print("<Whitespace>");
+//                continue;
+//            }
+//            System.out.print(b + " ");
+//        }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TestMedev.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
