@@ -43,7 +43,7 @@ public class TestMedev {
                 continue;
             }
              else{
-                  System.out.print(b);
+                  System.out.print(b+" ");
 
              }
             
