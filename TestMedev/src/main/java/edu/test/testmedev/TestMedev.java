@@ -19,8 +19,13 @@ public class TestMedev {
         System.out.println("Hello World");
         System.out.println("Hello again !!");
         System.out.println("Hello again  again !!");
+        
 
 
+    }
+    
+    public static void readPGM(String Path){
+        
     }
     
 }
